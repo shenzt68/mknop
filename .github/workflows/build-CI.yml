@@ -3,8 +3,7 @@ name: OpenWrt-CI
 on:
   schedule:
     - cron: '0 22 * * 5'
-  repository_dispatch:
-    types: 'run'
+  workflow_dispatch:
     
 env:
   TZ: 'Asia/Shanghai'
@@ -12,7 +11,6 @@ env:
 jobs:
   build:
     runs-on: ubuntu-18.04
-    if: github.event_name == 'schedule' || github.event.action == 'run'
 
     steps:
       - name: Checkout
