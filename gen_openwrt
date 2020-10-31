@@ -295,6 +295,7 @@ do_others() {
     elif [ $is_rockchip = true ]; then
         sed -i 's/ttyAMA0/tty1/' $path/etc/inittab
         sed -i 's/ttyS0/ttyS2/' $path/etc/inittab
+        [ -f $path/etc/config/fstab ] && sed -i 's/vfat/ext4/' $path/etc/config/fstab
     fi
 
     if ! grep -q '/tmp/upgrade' $path/etc/init.d/boot; then
