@@ -4,6 +4,8 @@ on:
   schedule:
     - cron: '0 22 * * 5'
   workflow_dispatch:
+  watch:
+    types: started  
     
 env:
   TZ: 'Asia/Shanghai'
@@ -11,6 +13,8 @@ env:
 jobs:
   build:
     runs-on: ubuntu-18.04
+    if: github.event_name == 'schedule' || github.event.repository.owner.id == github.event.sender.id
+
 
     steps:
       - name: Checkout
